@@ -45,11 +45,11 @@
         <constructor-arg value="10000"/>
     </bean>-->
 
-    <bean id="sequenceGenerator" class="com.springrecipes.sequence.SequenceGenerator">
+    <!--<bean id="sequenceGenerator" class="com.springrecipes.sequence.SequenceGenerator">
         <property name="initial" value="10000"/>
         <property name="suffixes">
-            <!--<list>-->
-            <!--<set>
+            &lt;!&ndash;<list>&ndash;&gt;
+            &lt;!&ndash;<set>
                 <value>A</value>
                 <bean class="java.net.URL">
                     <constructor-arg value="http"/>
@@ -57,9 +57,9 @@
                     <constructor-arg value="/"/>
                 </bean>
                 <null/>
-            </set>-->
-            <!--</list>-->
-            <!--<map>
+            </set>&ndash;&gt;
+            &lt;!&ndash;</list>&ndash;&gt;
+            &lt;!&ndash;<map>
                 <entry key="type" value="A"/>
                 &lt;!&ndash;<entry>
                     <key>
@@ -77,13 +77,35 @@
                         <constructor-arg value="/"/>
                     </bean>
                 </entry>
-            </map>-->
+            </map>&ndash;&gt;
             <props>
                 <prop key="type">A</prop>
                 <prop key="url">http://www.appress.com</prop>
                 <prop key="null">null</prop>
             </props>
         </property>
+    </bean>-->
 
+    <!-- Declaring Beans Parent and Child -->
+    <bean id="baseSequenceGenerator" class="com.springrecipes.sequence.SequenceGenerator">
+        <property name="prefix" value="10"/>
+        <property name="initial" value="10000"/>
+        <property name="suffixes">
+            <list>
+                <value>A</value>
+                <value>B</value>
+            </list>
+        </property>
     </bean>
+
+    <bean id="sequenceGenerator" parent="baseSequenceGenerator">
+        <property name="suffixes">
+            <list merge="true">
+                <value>A</value>
+                <value>C</value>
+            </list>
+        </property>
+    </bean>
+
+
 </beans>
