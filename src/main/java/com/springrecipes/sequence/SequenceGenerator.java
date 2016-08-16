@@ -1,6 +1,9 @@
 package com.springrecipes.sequence;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 public class SequenceGenerator {
 
@@ -9,7 +12,11 @@ public class SequenceGenerator {
     private int initial;
     private int counter;
 
-    private List<Object> suffixes;
+    //private List<Object> suffixes;
+    //private Object[] suffixes;
+    //private Set<Object> suffixes;
+    //private Map<Object,Object> suffixes;
+    private Properties suffixes;
 
     public SequenceGenerator() {}
 
@@ -31,7 +38,23 @@ public class SequenceGenerator {
         this.initial = initial;
     }
 
-    public void setSuffixes(List<Object> suffixes) {
+    /*public void setSuffixes(List<Object> suffixes) {
+        this.suffixes = suffixes;
+    }*/
+
+    /*public void setSuffixes(Object[] suffixes) {
+        this.suffixes = suffixes;
+    }*/
+
+    /*public void setSuffixes(Set<Object> suffixes) {
+        this.suffixes = suffixes;
+    }*/
+
+    /*public void setSuffixes(Map<Object, Object> suffixes) {
+        this.suffixes = suffixes;
+    }*/
+
+    public void setSuffixes(Properties suffixes) {
         this.suffixes = suffixes;
     }
 
@@ -39,11 +62,17 @@ public class SequenceGenerator {
         StringBuffer buffer = new StringBuffer();
         buffer.append(prefix);
         buffer.append(initial + counter++);
-/*        for(Object suffix: suffixes) {
+        /*for(Object suffix: suffixes) {
             buffer.append("-");
             buffer.append(suffix);
         }*/
-        buffer.append(suffix);
+        //buffer.append(suffix);
+        for(Map.Entry entry: suffixes.entrySet()) {
+            buffer.append("-");
+            buffer.append(entry.getKey());
+            buffer.append("@");
+            buffer.append(entry.getValue());
+        }
         return buffer.toString();
     }
 }

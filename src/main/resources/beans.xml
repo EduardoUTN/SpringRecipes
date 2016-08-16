@@ -39,9 +39,51 @@
         </constructor-arg>
     </bean>-->
 
-    <bean id="sequenceGenerator" class="com.springrecipes.sequence.SequenceGenerator">
+    <!--<bean id="sequenceGenerator" class="com.springrecipes.sequence.SequenceGenerator">
         <constructor-arg value="30"/>
         <constructor-arg value="A"/>
         <constructor-arg value="10000"/>
+    </bean>-->
+
+    <bean id="sequenceGenerator" class="com.springrecipes.sequence.SequenceGenerator">
+        <property name="initial" value="10000"/>
+        <property name="suffixes">
+            <!--<list>-->
+            <!--<set>
+                <value>A</value>
+                <bean class="java.net.URL">
+                    <constructor-arg value="http"/>
+                    <constructor-arg value="www.appress.com"/>
+                    <constructor-arg value="/"/>
+                </bean>
+                <null/>
+            </set>-->
+            <!--</list>-->
+            <!--<map>
+                <entry key="type" value="A"/>
+                &lt;!&ndash;<entry>
+                    <key>
+                        <value>type</value>
+                    </key>
+                    <value>A</value>
+                </entry>&ndash;&gt;
+                <entry>
+                    <key>
+                        <value>url</value>
+                    </key>
+                    <bean class="java.net.URL">
+                        <constructor-arg value="http"/>
+                        <constructor-arg value="www.appress.com"/>
+                        <constructor-arg value="/"/>
+                    </bean>
+                </entry>
+            </map>-->
+            <props>
+                <prop key="type">A</prop>
+                <prop key="url">http://www.appress.com</prop>
+                <prop key="null">null</prop>
+            </props>
+        </property>
+
     </bean>
 </beans>
