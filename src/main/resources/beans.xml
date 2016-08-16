@@ -1,9 +1,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean name="sequenceGenerator" class="com.springrecipes.sequence.SequenceGenerator">
+    <!-- Setter Injection -->
+    <!--<bean id="sequenceGenerator" class="com.springrecipes.sequence.SequenceGenerator">
         <property name="prefix">
             <value>30</value>
         </property>
@@ -13,11 +15,19 @@
         <property name="initial">
             <value>10000</value>
         </property>
-    </bean>
+    </bean>-->
+
+    <!--<bean id="sequenceGenerator" class="com.springrecipes.sequence.SequenceGenerator">
+        <property name="prefix" value="30"/>
+        <property name="suffix" value="A"/>
+        <property name="initial" value="10000"/>
+    </bean>-->
+
+    <!--<bean id="sequenceGenerator" class="com.springrecipes.sequence.SequenceGenerator"
+        p:prefix="30" p:suffix="A" p:initial="10000"/>-->
 
     <!-- Constructor Injection -->
-<!--
-    <bean name="sequenceGenerator" class="SequenceGenerator">
+    <!--<bean id="sequenceGenerator" class="com.springrecipes.sequence.SequenceGenerator">
         <constructor-arg>
             <value>30</value>
         </constructor-arg>
@@ -27,6 +37,11 @@
         <constructor-arg>
             <value>10000</value>
         </constructor-arg>
+    </bean>-->
+
+    <bean id="sequenceGenerator" class="com.springrecipes.sequence.SequenceGenerator">
+        <constructor-arg value="30"/>
+        <constructor-arg value="A"/>
+        <constructor-arg value="10000"/>
     </bean>
--->
 </beans>
